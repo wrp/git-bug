@@ -230,7 +230,7 @@ func addCommentWithEditor(bug *cache.BugCache) error {
 	ui.g.Close()
 	ui.g = nil
 
-	message, err := buginput.BugCommentEditorInput(ui.cache, "")
+	message, err := buginput.BugCommentEditorInput(ui.cache, "", "new", "", bug.Id().Human(), bug.Snapshot().Title, "")
 	if err != nil && err != buginput.ErrEmptyMessage {
 		return err
 	}
@@ -261,7 +261,7 @@ func editCommentWithEditor(bug *cache.BugCache, target entity.CombinedId, preMes
 	ui.g.Close()
 	ui.g = nil
 
-	message, err := buginput.BugCommentEditorInput(ui.cache, preMessage)
+	message, err := buginput.BugCommentEditorInput(ui.cache, preMessage, "edit", target.Human(), bug.Id().Human(), bug.Snapshot().Title, preMessage)
 	if err != nil && err != buginput.ErrEmptyMessage {
 		return err
 	}
